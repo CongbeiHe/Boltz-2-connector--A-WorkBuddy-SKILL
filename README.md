@@ -4,8 +4,6 @@ End-to-end workflow for [Boltz-2](https://boltz.bio) cloud structure prediction:
 
 This repository doubles as a **WorkBuddy (CodeBuddy-family) Skill**: drop it into `~/.workbuddy/skills/` and simply say "run a Boltz structure prediction" in chat — the full workflow triggers automatically.
 
-**Zero third-party dependencies**: every script is pure Python standard library — mmCIF and PAE (npz/npy) are parsed by hand with `zipfile` + `struct`; no numpy, gemmi, or BioPython required.
-
 ## What's inside
 
 | Component | Purpose |
@@ -16,7 +14,7 @@ This repository doubles as a **WorkBuddy (CodeBuddy-family) Skill**: drop it int
 | `scripts/cif2pdb.py` | mmCIF→PDB with B-factor = pLDDT×100; opens directly in PyMOL/ChimeraX |
 | `references/api-schema.md` | The input JSON schema as measured by experiment — the official docs only cover the UI; every field name here was reverse-engineered from server-side validation errors |
 | `references/pitfalls.md` | Every auth / sandbox / session / constraint pitfall encountered, with fixes |
-| `examples/` | Three inputs that have all been executed successfully: a smoke test, a binary complex with 4 Å hard constraints, and a ternary complex (cyclic peptide cyclization + hard constraints + 5 samples) |
+
 
 ## Installation
 
@@ -43,9 +41,6 @@ This is just a set of Python scripts + reference docs. Run `python3 scripts/bolt
 ## Quick start
 
 ```bash
-# Smoke test (~$0.025)
-python3 scripts/boltz_pipeline.py --input examples/smoke_test.json \
-    --name smoke --root-dir boltz_runs --analyze
 
 # Real complex: constraints + 5 samples + cyclic peptide
 python3 scripts/boltz_pipeline.py --input examples/ternary_cyclic_peptide_constrained.json \
